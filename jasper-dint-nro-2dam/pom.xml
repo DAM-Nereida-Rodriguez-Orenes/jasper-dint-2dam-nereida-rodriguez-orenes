@@ -10,4 +10,16 @@
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.nro.jasper.dint.nro.dam.JasperDintNro2dam</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+    </dependencies>
 </project>
