@@ -8,7 +8,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>com.nro.jasper.dint.nro.dam.JasperDintNro2dam</exec.mainClass>
+        <exec.mainClass>com.nro.jasper.dint.nro.dam.App</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>

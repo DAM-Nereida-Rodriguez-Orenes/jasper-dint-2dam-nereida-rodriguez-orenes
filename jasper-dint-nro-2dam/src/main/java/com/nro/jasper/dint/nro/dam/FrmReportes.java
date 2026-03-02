@@ -4,6 +4,14 @@
  */
 package com.nro.jasper.dint.nro.dam;
 
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Asus
@@ -30,7 +38,7 @@ public class FrmReportes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,7 +69,31 @@ public class FrmReportes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
+   //reporte
+    private void mostrarReporte() {
+        try {
+            // Conexión a la base de datos productos_bd
+            Connection conn = DriverManager.getConnection(
+            "jdbc:mariadb://localhost:3306/productos_bd",
+            "root",
+            ""
+            );
+            // Cargar el .jasper desde resources
+            InputStream reporte = getClass().getResourceAsStream(
+            "/reports/reporte_productos.jasper");
+            JasperPrint print = JasperFillManager.fillReport(reporte, null, conn);
+            // Crear el visor JasperViewer
+            JasperViewer viewer = new JasperViewer(print, false);
+            // Mostrarlo dentro del JFrame (no modal)
+            viewer.setVisible(true);
+            // Opcional: cerrar FrmReportes automáticamente si no contiene nada
+            this.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+            "Error generando el reporte: " + e.getMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
